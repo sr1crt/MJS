@@ -1,0 +1,14 @@
+body {
+  background-image: url("images/background1.png");
+}
+
+
+.container{
+  margin-top: 300px;
+}
+
+.navbar {
+	border-bottom-width: 2px;
+	border-bottom-color: red;
+	
+}
