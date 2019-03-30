@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Manchester Jewellry</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+</head>
+  <body>
+
+    <!--Here is the Navigation Bar-->
+    <nav class="navbar navbar-inverse navbar_fixed_top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+
+          <a class="navbar-brand" href="nav_index.html">Manchester Jewellry Store</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="nav_index.html"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+          <li><a href="nav_craftsmen.html">Craftsmen</a></li>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">About <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+
+            </ul>
+          </li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+
+
+        </div>
+      </div>
+    </nav>
+
+    <!--Here is the Menu-->
+    <div style= "float:left">
+      <div class="list-group">
+        <a href="menu_rings.html" class="list-group-item list-group-item-action list-group-item-primary">Rings</a>
+        <a href="menu_chains.html" class="list-group-item list-group-item-action list-group-item-primary">Chains</a>
+        <a href="menu_bracelets.html" class="list-group-item list-group-item-action list-group-item-primary">Bracelets</a>
+        <a href="menu_necklaces.html" class="list-group-item list-group-item-action list-group-item-primary">Necklaces</a>
+        <a href="menu_earrings.html" class="list-group-item list-group-item-action list-group-item-primary">Earrings</a>
+        <a href="menu_charms.html" class="list-group-item list-group-item-action list-group-item-primary">Charms</a>
+        <a href="menu_lockets.html" class="list-group-item list-group-item-action list-group-item-primary">Lockets</a>
+        <a href="menu_brooches.html" class="list-group-item list-group-item-action list-group-item-primary">Brooches</a>
+      </div>
+    </div>
+
+    <div class="col-md-8 col-xs-12">
+      <div class="row">
+        <div class="col-md-12 col-xs-12" id="product_msg">
+        </div>
+      </div>
+      
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          Products
+        </div>
+    
+        <div class="panel-body">
+
+          <form>
+            Craftmen Craftsmen Name<br>
+              <input style="margin-bottom: 20px;" type="text" name="firstname"><br>
+
+            Item Name<br>
+              <input style="margin-bottom: 20px;" type="text"><br>
+
+            Item Category<br>
+              <input style="display: none; background-color: #f9f9f9; min-width: 160px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); margin-bottom: 20px">
+
+            <select style="margin-bottom: 20px">
+              <option value="" disabled="disabled" selected="selected">Pick one</option>
+              <option value="1">Ring</option>
+              <option value="2">Chain</option>
+              <option value="3">Bracelet</option>
+              <option value="4">Necklace</option>
+              <option value="5">Earring</option>
+              <option value="6">Charm</option>
+              <option value="7">Locket</option>
+              <option value="8">Brooch</option>
+              <option value="8">Arain</option>
+            </select><br>
+
+            Photo/s of Item<br>
+              <input type="submit" value="Submit">
+
+          </form>
+
+        <div id="get_product">
+        </div>
+      
+        <div class="col-md-4">  
+        </div>
+
+        <div class="panel-footer" style="margin-top:200px;">
+          &copy; 2019 Manchester Jewellry Store
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

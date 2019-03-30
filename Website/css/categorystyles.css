@@ -1,0 +1,74 @@
+body {
+  background-image: url("images/background1.png");
+}
+
+.container{
+  margin-top: 300px;
+}
+
+.navbar {
+	border-bottom-width: 2px;
+	border-bottom-color: red;
+}
+
+.categorybox {
+	height: 400px;
+	width: auto;
+	margin-top: 10px;
+	margin-left: 150px;
+	margin-right: 150px;
+	margin-bottom: 50px;
+	background-color: white;
+}
+
+.categorybox > h3 {
+	margin-left: 500px;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+
+.categorybox > .titlebox {
+	height: 30px;
+	width: auto;
+	padding-right: auto;
+	padding-left: 40%;
+	padding-top: 5px;
+}
+
+.categorybox > .titlebox > h2 {
+	color: black;
+	font-family: times new roman;
+}
