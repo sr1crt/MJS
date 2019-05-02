@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2019 at 03:29 PM
+-- Generation Time: May 02, 2019 at 05:09 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `mjs`
 --
-CREATE DATABASE IF NOT EXISTS `mjs` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `mjs`;
 
 -- --------------------------------------------------------
 
@@ -30,7 +28,6 @@ USE `mjs`;
 -- Table structure for table `commissions`
 --
 
-DROP TABLE IF EXISTS `commissions`;
 CREATE TABLE `commissions` (
   `Commision_ID` int(11) NOT NULL,
   `Customer_ID` int(11) NOT NULL,
@@ -46,7 +43,6 @@ CREATE TABLE `commissions` (
 -- Table structure for table `craftsmen`
 --
 
-DROP TABLE IF EXISTS `craftsmen`;
 CREATE TABLE `craftsmen` (
   `Craftsman_ID` int(11) NOT NULL,
   `Craftsman_name` varchar(255) NOT NULL,
@@ -60,7 +56,6 @@ CREATE TABLE `craftsmen` (
 -- Table structure for table `customers`
 --
 
-DROP TABLE IF EXISTS `customers`;
 CREATE TABLE `customers` (
   `Customer_ID` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL,
@@ -72,18 +67,54 @@ CREATE TABLE `customers` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `invoices`
+-- Table structure for table `invoice_order`
 --
 
-DROP TABLE IF EXISTS `invoices`;
-CREATE TABLE `invoices` (
-  `Invoice_ID` int(11) NOT NULL,
-  `Customer_ID` int(11) NOT NULL,
-  `Craftsman_ID` int(11) NOT NULL,
-  `Currency` varchar(255) NOT NULL,
-  `Price` decimal(10,0) NOT NULL,
-  `GBP_Conv.` decimal(10,0) NOT NULL,
-  `Tax_receipt_ID` int(11) NOT NULL
+CREATE TABLE `invoice_order` (
+  `order_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `order_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `order_receiver_name` varchar(250) NOT NULL,
+  `order_receiver_address` text NOT NULL,
+  `order_total_before_tax` decimal(10,2) NOT NULL,
+  `order_total_tax` decimal(10,2) NOT NULL,
+  `order_tax_per` varchar(250) NOT NULL,
+  `order_total_after_tax` double(10,2) NOT NULL,
+  `order_amount_paid` decimal(10,2) NOT NULL,
+  `order_total_amount_due` decimal(10,2) NOT NULL,
+  `note` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `invoice_order_item`
+--
+
+CREATE TABLE `invoice_order_item` (
+  `order_item_id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `item_code` varchar(250) NOT NULL,
+  `item_name` varchar(250) NOT NULL,
+  `order_item_quantity` decimal(10,2) NOT NULL,
+  `order_item_price` decimal(10,2) NOT NULL,
+  `order_item_final_amount` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `invoice_user`
+--
+
+CREATE TABLE `invoice_user` (
+  `customer_id` int(11) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `mobile` bigint(20) NOT NULL,
+  `address` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -92,7 +123,6 @@ CREATE TABLE `invoices` (
 -- Table structure for table `stock`
 --
 
-DROP TABLE IF EXISTS `stock`;
 CREATE TABLE `stock` (
   `Stock_ID` int(11) NOT NULL,
   `Item_name` varchar(255) NOT NULL,
@@ -107,7 +137,6 @@ CREATE TABLE `stock` (
 -- Table structure for table `user_details`
 --
 
-DROP TABLE IF EXISTS `user_details`;
 CREATE TABLE `user_details` (
   `User_ID` int(11) NOT NULL,
   `User_Type` varchar(255) NOT NULL,
@@ -122,7 +151,6 @@ CREATE TABLE `user_details` (
 -- Table structure for table `user_login`
 --
 
-DROP TABLE IF EXISTS `user_login`;
 CREATE TABLE `user_login` (
   `User_ID` int(11) NOT NULL,
   `Username` varchar(255) NOT NULL,
@@ -152,14 +180,6 @@ ALTER TABLE `craftsmen`
 --
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`Customer_ID`);
-
---
--- Indexes for table `invoices`
---
-ALTER TABLE `invoices`
-  ADD PRIMARY KEY (`Invoice_ID`),
-  ADD UNIQUE KEY `Craft_FK` (`Craftsman_ID`),
-  ADD UNIQUE KEY `Cust_FK` (`Customer_ID`);
 
 --
 -- Indexes for table `stock`
@@ -206,12 +226,6 @@ ALTER TABLE `customers`
   MODIFY `Customer_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `invoices`
---
-ALTER TABLE `invoices`
-  MODIFY `Invoice_ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
@@ -233,13 +247,6 @@ ALTER TABLE `user_login`
 ALTER TABLE `commissions`
   ADD CONSTRAINT `commissions_ibfk_1` FOREIGN KEY (`Customer_ID`) REFERENCES `customers` (`Customer_ID`),
   ADD CONSTRAINT `commissions_ibfk_2` FOREIGN KEY (`Craftsman_ID`) REFERENCES `craftsmen` (`Craftsman_ID`);
-
---
--- Constraints for table `invoices`
---
-ALTER TABLE `invoices`
-  ADD CONSTRAINT `invoices_ibfk_1` FOREIGN KEY (`Customer_ID`) REFERENCES `customers` (`Customer_ID`),
-  ADD CONSTRAINT `invoices_ibfk_2` FOREIGN KEY (`Craftsman_ID`) REFERENCES `craftsmen` (`Craftsman_ID`);
 
 --
 -- Constraints for table `stock`
